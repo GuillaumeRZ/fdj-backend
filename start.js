@@ -1,5 +1,6 @@
 const debug = require('debug')('fdj-backend:server'); // ???
-const http = require('http'); // ???
+//const http = require('http'); // ???
+const helpers = require('./helpers');
 
 // Import environmental variables from our variables.env file
 require('dotenv').config({ path: 'variables.env' });
@@ -8,7 +9,7 @@ require('dotenv').config({ path: 'variables.env' });
  * Get port from environment and start our app !
  */
 const app = require('./app');
-const port = normalizePort(process.env.PORT || 3001);
+const port = helpers.normalizePort(process.env.PORT || 3001);
 app.set('port', port);
 const server = app.listen(app.get('port'), () => {
   console.log(`🚅 Express running → PORT ${server.address().port}`);
@@ -22,24 +23,6 @@ server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
 
-/**
- * Normalize a port into a number, string, or false.
- */
-function normalizePort(val) {
-  const port = parseInt(val, 10);
-
-  if (isNaN(port)) {
-    // named pipe
-    return val;
-  }
-
-  if (port >= 0) {
-    // port number
-    return port;
-  }
-
-  return false;
-}
 
 /**
  * Event listener for HTTP server "error" event.

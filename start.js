@@ -1,6 +1,6 @@
 const debug = require('debug')('fdj-backend:server'); // ???
 //const http = require('http'); // ???
-const helpers = require('./helpers');
+const helpers = require('./helpers/helpers');
 
 // Import environmental variables from our variables.env file
 require('dotenv').config({ path: 'variables.env' });
